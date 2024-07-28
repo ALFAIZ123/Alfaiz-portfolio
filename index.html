@@ -1,0 +1,743 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="./src/output.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+    rel="stylesheet">
+  <!-- npx tailwindcss -i ./src/input.css -o ./src/output.css --watch  -->
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Ubuntu";
+    }
+
+    .toggle-div {
+      display: none;
+      width: 100%;
+      color: black;
+      border: 1px solid black;
+      background: #eee;
+
+    }
+
+    .swiper {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .swiper-slide {
+      z-index: 999;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .swiper-button-next {
+      color: black !important;
+    }
+
+    .swiper-button-prev {
+      color: black !important;
+    }
+
+    .swiper-pagination {
+      color: black !important;
+
+    }
+
+    .dark .fa-moon {
+      display: none;
+    }
+
+    .dark .fa-sun {
+      display: inline;
+    }
+
+    .fa-sun {
+      display: none;
+    }
+
+    body.dark {
+      background-color: #111;
+      border: #eee;
+      color: #eee;
+    }
+
+    body.light {
+      background-color: #eee;
+      border: #111;
+      color: #111;
+    }
+
+    #loader {
+      position: fixed;
+      top: 0;
+      
+      background: #1a1a1a;
+      display: flex;
+      min-height: 100vh;
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+    }
+
+    path {
+      stroke-linecap: round;
+      stroke-width: 10;
+      stroke-linejoin: "round";
+    }
+
+    #left-half {
+      stroke-dasharray: 1000;
+      stroke-dashoffset: 999;
+      animation: animate-right-half 2s ease-in;
+      animation-delay: 1s;
+      animation-fill-mode: forwards;
+    }
+
+    #right-half {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      stroke-dasharray: 1000;
+      stroke-dashoffset: 999;
+      animation: animate-right-half 2s ease-in;
+      animation-delay: 1s;
+      animation-fill-mode: forwards;
+    }
+
+    @keyframes animate-right-half {
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+
+    svg {
+      animation: shrink 1s ease-in-out;
+      animation-delay: 2.2s;
+      animation-fill-mode: forwards;
+      width: 100px;
+    }
+
+    @keyframes shrink {
+      to {
+        transform: scale(0);
+        opacity: 0;
+      }
+    }
+
+    #loader {
+      animation: disappear 2s ease-in-out;
+      animation-delay: 1s;
+      animation-fill-mode: forwards;
+    }
+
+
+    @keyframes disappear {
+      from {
+        opacity: 1;
+      }
+
+      to {
+        opacity: 0;
+      }
+    }
+
+    @keyframes zoom-in {
+      to {
+        transform: scale(1);
+      }
+    }
+
+    /* .swiper-button-next, .swiper-button-prev  */
+  </style>
+</head>
+
+<body class="light">
+  <div id="loader" class="flex flex-col">
+    <svg width="274" height="275" viewBox="0 0 274 275" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g>
+        <path id="left-half"
+          d="M137.5 265C102.624 265 69.1765 251.146 44.5155 226.485C19.8544 201.824 6 168.376 5.99999 133.5C5.99999 98.624 19.8544 65.1765 44.5154 40.5155C69.1765 15.8544 102.624 2.00001 137.5 2.00001"
+          stroke="white" />
+      </g>
+      <g>
+        <path id="right-half"
+          d="M137 2C171.876 2 205.324 15.8544 229.985 40.5155C254.646 65.1765 268.5 98.624 268.5 133.5C268.5 168.376 254.646 201.824 229.985 226.485C205.324 251.146 171.876 265 137 265"
+          stroke="white" />
+      </g>
+    </svg>
+    <div class="w-full flex items-center justify-center">
+      <h1 class="text-6xl text-white">Alfaiz Ahmad</h1>
+    </div>
+  </div>
+  <div class="container w-full h-full mx-auto overflow-hidden">
+    <header
+      class="container w-full md:flex items-center justify-between z-10 bg-white bg-opacity-20 hidden mx-auto px-5 py-3 fixed top-0 h-20 inset-0">
+      <div class="">
+        <img src="asset/img/logo2.png" class="w-12 h-12">
+      </div>
+      <div class="">
+        <ul class="flex gap-12 text-base">
+          <li class="hover:text-lg hover:text-gray-400"><a href="#">Home</a></li>
+          <li class="hover:text-lg hover:text-gray-400"><a href="#Skills1">Skills</a></li>
+          <li class="hover:text-lg hover:text-gray-400"><a href="#Qualification">Qualification</a></li>
+          <li class="hover:text-lg hover:text-gray-400"><a href="#Services">Services</a></li>
+          <li class="hover:text-lg hover:text-gray-400"><a href="#Projects">Projects</a></li>
+          <li class="hover:text-lg hover:text-gray-400"><a href="#Contact">Contact</a></li>
+          <li> <button type="button" onclick="toggleDarkLight()">
+              <i class="fa-solid fa-moon text-2xl"></i>
+              <i class="fa-solid fa-sun text-2xl"></i>
+            </button></li>
+        </ul>
+      </div>
+    </header>
+    <!-- hero section -->
+    <section class="w-full h-full hidden md:block">
+      <div class="w-full md:flex items-center justify-center md:mt-28" data-aos="fade-down" data-aos-duration="1000">
+        <h1 class="text-center md:text-5xl text-3xl">Hi, I'm Alfaiz <br> Frontend Developer <br> Based In India</h1>
+      </div>
+      <div class="md:flex h-[620px] my-8">
+        <div class="md:w-1/3 h-full font-bold md:flex flex-col text-start px-8 py-4 gap-12 hidden" data-aos="fade-up"
+          data-aos-duration="3000">
+          <div class="">
+            <p class="mb-6 font-extralight">BIOGRAPHY</p>
+            <p class="w-52">Hi Im Alfaiz, Frontend Developer Passionate About Designing Beautiful Web Interfaces Based
+              In India</p>
+          </div>
+          <div class="">
+            <p class="mb-6 font-extralight">CONTACT</p>
+            <p>Delhi, India</p>
+            <p>ahmad.alfaiz030@gmail.com</p>
+            <p>+919140318884</p>
+          </div>
+          <div class="">
+            <p class="mb-6 font-extralight">SERVICES</p>
+            <p class="w-52">Hi Im Alfaiz, Frontend Developer Passionate About Designing Beautiful Web Interfaces Based
+              In India</p>
+          </div>
+        </div>
+        <div class="md:w-1/3  h-full  border-2 px-7 py-7 rounded-full border-black hover:border-white"
+          >
+          <img src="asset/img/perfil.png" alt="" class="w-full h-full rounded-full bg-sky-300">
+        </div>
+        <div class="md:w-1/3 h-full md:flex flex-col text-end px-14 py-4 gap-24 font-bold" data-aos="fade-up"
+          data-aos-duration="3000">
+          <div>
+            <h4 class="mb-6 font-extralight">YEAR OF EXPERIENCE</h4>
+            <p class="text-5xl">01+</p>
+          </div>
+          <div>
+            <h4 class="mb-6 font-extralight">COMPLETE PROJECTS</h4>
+            <p class="text-5xl">30+</p>
+          </div>
+          <div>
+            <h4 class="mb-6 font-extralight">COMPANIES WORK</h4>
+            <p class="text-5xl">06+</p>
+          </div>
+        </div>
+      </div>
+      <div class="w-full flex items-center justify-center my-4 gap-4 text-2xl" data-aos="fade-down"
+        data-aos-duration="1000">
+        <i class="fa-regular fa-image hover:text-slate-500"></i>
+        <i class="fa-brands fa-linkedin fa-bounce hover:text-slate-500"></i>
+        <i class="fa-solid fa-globe hover:text-slate-500"></i>
+      </div>
+    </section>
+
+    <!-- responsive hero section -->
+    <section class="w-full h-full md:hidden">
+      <div class="w-full flex items-center justify-center mt-10" data-aos="fade-down" data-aos-duration="1000">
+        <h1 class="text-center md:text-5xl text-3xl">Hi, I'm Alfaiz <br> Frontend Developer <br> Based In India</h1>
+      </div>
+      <div class="md:flex w-full my-8">
+        <div class=" h-full  border-2 px-7 py-7 mx-20 rounded-full border-black hover:border-white" data-aos="fade-down"
+          data-aos-duration="1000">
+          <img src="asset/img/perfil.png" alt="" class="w-full h-full rounded-full bg-sky-300">
+        </div>
+        <div class="w-full flex items-center justify-center my-8 gap-4 text-2xl" data-aos="fade-up"
+          data-aos-duration="1000">
+          <i class="fa-regular fa-image hover:text-slate-500"></i>
+          <i class="fa-brands fa-linkedin fa-bounce hover:text-slate-500"></i>
+          <i class="fa-solid fa-globe hover:text-slate-500"></i>
+        </div>
+        <div class="w-full h-full font-bold flex flex-col  px-8 py-4 gap-12" data-aos="fade-up"
+          data-aos-duration="1000">
+          <div class="">
+            <p class="mb-4 font-extralight">BIOGRAPHY</p>
+            <p class="">Hi Im Alfaiz, Frontend Developer Passionate About Designing Beautiful Web Interfaces Based
+              In India</p>
+          </div>
+          <div class="">
+            <p class="mb-4 font-extralight">CONTACT</p>
+            <p>Delhi, India</p>
+            <p>ahmad.alfaiz030@gmail.com</p>
+            <p>+919140318884</p>
+          </div>
+          <div class="">
+            <p class="mb-4 font-extralight">SERVICES</p>
+            <p class="">Hi Im Alfaiz, Frontend Developer Passionate About Designing Beautiful Web Interfaces Based
+              In India</p>
+          </div>
+        </div>
+        <div class="w-full h-full flex flex-col px-8 py-4 my-4 gap-12 font-bold" data-aos="fade-up"
+          data-aos-duration="1000">
+          <div>
+            <h4 class="mb-6 font-extralight">YEAR OF EXPERIENCE</h4>
+            <p class="text-xl">01+</p>
+          </div>
+          <div>
+            <h4 class="mb-6 font-extralight">COMPLETE PROJECTS</h4>
+            <p class="text-xl">30+</p>
+          </div>
+          <div>
+            <h4 class="mb-6 font-extralight">COMPANIES WORK</h4>
+            <p class="text-xl">06+</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="bg-slate-600 pt-0.5 mx-4 md:mt-24 mt-12">
+
+    <!-- Resonsive navbar -->
+    <section class="container1 w-full relative md:hidden">
+      <div class="w-full h-full fixed inset-0 bottom-0 flex items-end" id="navbar">
+        <div class="w-full mx-4 h-auto">
+          <div class="toggle-div w-full h-60 bg-white rounded-2xl shadow-xl shadow-black z-10">
+            <div class="w-full flex items-center justify-between px-16 py-8 gap-4">
+              <span class="flex-col text-center">
+                <a href="#"><i class="fa-solid fa-house text-3xl"></i></a>
+                <p>Home</p>
+              </span>
+              <span class="flex-col text-center  ml-4">
+                <a href="#Skills1"><i class="fa-solid fa-trophy text-3xl"></i></a>
+                <p>Skills</p>
+              </span>
+              <span class="flex-col text-center">
+                <a href="#Qualification"><i class="fa-solid fa-book-open text-3xl"></i></a>
+                <p>Qualification</p>
+              </span>
+            </div>
+            <div class="w-full flex items-center justify-between px-14 py-4 gap-4">
+              <span class="flex-col text-center">
+                <a href="#Services"><i class="fa-solid fa-briefcase text-3xl"></i></a>
+                <p>Service</p>
+              </span>
+              <span class="flex-col text-center">
+                <a href="#Projects"><i class="fa-regular fa-image text-3xl"></i></a>
+                <p>Projects</p>
+              </span>
+              <span class="flex-col text-center mr-4">
+                <a href="#Contact"><i class="fa-regular fa-comment text-3xl"></i></a>
+                <p>Contact</p>
+              </span>
+            </div>
+          </div>
+          <div class="w-full flex justify-between bg-white  shadow-2xl shadow-slate-700 rounded-full my-6 px-6 py-6 z-10">
+            <img src="asset/img/logo2.png" class="w-8 h-8">
+            <div class="flex gap-4">
+              <button type="button" onclick="toggleDarkLight()">
+                <i class="fa-solid fa-moon text-2xl"></i>
+                <i class="fa-solid fa-sun text-2xl text-black"></i>
+              </button>
+              <img src="asset/img/download__1_-removebg-preview.png" alt="" class="w-10 h-10" id="toggleImage">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills section -->
+    <section class="w-full h-full" id="Skills1">
+      <div class="w-full md:mt-16 mt-10">
+        <div class="w-full  text-center">
+          <h2 class="md:text-5xl text-3xl">Skills</h2>
+          <p>My favourite skills</p>
+        </div>
+        <div class="md:flex my-8">
+          <div class="md:w-1/2 md:py-10 py-8" data-aos="fade-right" data-aos-duration="1000">
+            <p class="text-center text-xl">{} Frontend Developer</p>
+            <div class="w-full flex justify-center gap-12 md:py-16 py-10">
+              <div class="text-center">
+                <img src="asset/img/html-1.svg" alt="" class="w-14 h-14">
+                <p class="py-10">Html</p>
+              </div>
+              <div class="text-center">
+                <img src="asset/img/css-3.svg" alt="" class="w-14 h-14">
+                <p class="py-10">CSS</p>
+              </div>
+              <div class="text-center">
+                <img src="asset/img/logo-javascript.svg" alt="" class="w-14 h-14">
+                <p class="py-10">Javascript</p>
+              </div>
+            </div>
+            <div class="w-full flex justify-center gap-14 pb-5">
+              <div class="text-center">
+                <img src="asset/img/react-2.svg" alt="" class="w-14 h-14">
+                <p class="py-10">React js</p>
+              </div>
+              <div class="text-center">
+                <img src="asset/img/git-icon.svg" alt="" class="w-14 h-14">
+                <p class="py-10">Git</p>
+              </div>
+            </div>
+          </div>
+          <div class="md:w-1/2 md:py-10" data-aos="fade-left" data-aos-duration="1000">
+            <p class="text-center text-xl">{} Web Designer</p>
+            <div class="w-full flex justify-center gap-12 md:py-16 py-10">
+              <div class="text-center">
+                <img src="asset/img/figma-1.svg" alt="" class="w-14 h-14">
+                <p class="py-10">Figma</p>
+              </div>
+              <div class="text-center">
+                <img src="asset/img/sketch-2.svg" alt="" class="w-14 h-14">
+                <p class="py-10">Sketch</p>
+              </div>
+              <div class="text-center">
+                <img src="asset/img/adobe-xd-1.svg" alt="" class="w-14 h-14">
+                <p class="py-10">Adobe Xd</p>
+              </div>
+            </div>
+            <div class="w-full flex justify-center gap-14 md:pb-7">
+              <div class="text-center">
+                <img src="asset/img/adobe-photoshop-2.svg" alt="" class="w-14 h-14">
+                <p class="py-10">AdobePs</p>
+              </div>
+              <div class="text-center">
+                <img src="asset/img/invision.svg" alt="" class="w-14 h-14">
+                <p class="py-10">Invision</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="bg-slate-600 pt-0.5 mx-4 mb-4">
+
+    <!-- Qualification -->
+    <section class="w-full h-full" id="Qualification">
+      <div class="w-full my-12">
+        <div class="w-full  text-center py-4">
+          <h2 class="md:text-5xl text-3xl">Qualification</h2>
+          <p>Experience & education</p>
+        </div>
+        <div class="md:flex md:mx-28 mx-12" data-aos="fade-up" data-aos-duration="1000">
+          <div class="md:w-1/2 flex flex-col md:items-center items-start justify-center py-8">
+            <p class="text-center w-full"><i class="fa-solid fa-graduation-cap px-2"></i>Education</p>
+            <div class="py-4">
+              <div class="py-4">
+                <h2 class="text-xl">Master In Web Developer</h2>
+                <p class="mt-3">Delhi-University</p>
+                <p>2020-2024</p>
+              </div>
+              <div class="py-4">
+                <h2 class="text-xl">UI/UX Design</h2>
+                <p class="mt-3">Institute-Delhi</p>
+                <p>2022-2024</p>
+              </div>
+              <div class="py-4">
+                <h2 class="text-xl">Computer Engineer</h2>
+                <p class="mt-3">Institute-Delhi</p>
+                <p>2022-2024</p>
+              </div>
+            </div>
+          </div>
+          <div class="md:w-1/2 flex flex-col md:items-center items-start justify-center md:py-8 ">
+            <p class="text-center w-full"><i class="fa-regular fa-building px-2"></i>Work</p>
+            <div class="py-4">
+              <div class="py-4">
+                <h2 class="text-xl">Frontend Developer</h2>
+                <p class="mt-3">Adobe-Delhi</p>
+                <p>2020-2024</p>
+              </div>
+              <div class="py-4">
+                <h2 class="text-xl">Software-Engineer</h2>
+                <p class="mt-3">Microsoft-Delhi</p>
+                <p>2022-2024</p>
+              </div>
+              <div class="py-4">
+                <h2 class="text-xl">Graphic-Delhi</h2>
+                <p class="mt-3">Institute-Delhi</p>
+                <p>2022-2024</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="bg-slate-600 pt-0.5 mx-4 mb-4">
+
+    <!-- Services -->
+    <section class="w-full h-full" id="Services">
+      <div class="w-full">
+        <div class="w-full  text-center py-4">
+          <h2 class="md:text-5xl text-3xl">Services</h2>
+          <p>What i Offer</p>
+        </div>
+      </div>
+      <div class="w-full flex flex-col md:flex-row items-center justify-center my-12 md:gap-16 gap-12"
+        data-aos="fade-up" data-aos-duration="1000">
+        <div class="md:w-1/5 rounded-full hover:border-2 hover:border-gray-500 md:mx-0 mx-16 md:px-3 px-4">
+          <div
+            class="w-full flex flex-col hover:bg-slate-200 hover:text-black items-center justify-center text-center rounded-full md:px-4 px-12 my-4  py-16">
+            <i class="fa-solid fa-building-un text-5xl"></i>
+            <p class="text-2xl py-4">UI/UX <br> Designer</p>
+            <p class="text-xs">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem vero non, molestiae
+              eaque error fugit sunt officiis voluptates blanditiis!</p>
+          </div>
+        </div>
+        <div class="md:w-1/5 rounded-full hover:border-2 hover:border-gray-500 md:mx-0 mx-16 md:px-3 px-4">
+          <div
+            class="w-full flex flex-col hover:bg-slate-200 hover:text-black items-center justify-center text-center rounded-full md:px-4 px-12 my-4  py-16">
+            <i class="fa-solid fa-code text-5xl"></i>
+            <p class="text-2xl py-4">Website <br> Design</p>
+            <p class="text-xs">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem vero non, molestiae
+              eaque error fugit sunt officiis voluptates blanditiis!</p>
+          </div>
+        </div>
+        <div class="md:w-1/5 rounded-full hover:border-2 hover:border-gray-500 md:mx-0 mx-16 md:px-3 px-4">
+          <div
+            class="w-full flex flex-col hover:bg-slate-200 hover:text-black items-center justify-center text-center rounded-full md:px-4 px-12 my-4  py-16">
+            <i class="fa-solid fa-pen-nib text-5xl"></i>
+            <p class="text-2xl py-4">Digital <br> Animator</p>
+            <p class="text-xs">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem vero non, molestiae
+              eaque error fugit sunt officiis voluptates blanditiis!</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="bg-slate-600 pt-0.5 mx-4 mb-4">
+    <!-- Projects -->
+    <section class="w-full h-full md:flex flex-col items-center justify-center my-28 " id="Projects">
+      <div class="w-full py-10">
+        <div class="w-full  text-center py-6">
+          <h2 class="md:text-5xl text-3xl">Projects</h2>
+          <p class="py-2">Most Recent Work</p>
+        </div>
+      </div>
+      <div class="md:w-full" data-aos="fade-up" data-aos-duration="1000">
+        <div class="swiper mySwiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <div class="h-full shadow md:text-start">
+                <img src="asset/img/project1.jpg" class="md:w-96 w-60 md:h-72 h-40  rounded-xl">
+                <p class="pt-5">Web</p>
+                <p class="text-2xl py-3">Modern Website</p>
+                <p>View Demo -></p>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="h-full shadow md:text-start">
+                <img src="asset/img/project2.jpg" class="md:w-96 w-60 md:h-72 h-40 rounded-xl">
+                <p class="pt-5">Web</p>
+                <p class="text-2xl py-3">Modern Website</p>
+                <p>View Demo -></p>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="h-full shadow md:text-start">
+                <img src="asset/img/project3.jpg" class="md:w-96 w-60 md:h-72 h-40 rounded-xl">
+                <p class="pt-5">Design</p>
+                <p class="text-2xl py-3">Application Design</p>
+                <p>View Demo -></p>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="h-full shadow md:text-start">
+                <img src="asset/img/project4.jpg" class="md:w-96 w-60 md:h-72 h-40 rounded-xl">
+                <p class="pt-5">Animation</p>
+                <p class="text-2xl py-3">Animation Prototypes</p>
+                <p>View Demo -></p>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-pagination"></div>
+        </div>
+      </div>
+    </section>
+    <hr class="bg-slate-600 pt-0.5 mx-4 mb-4">
+    <!-- Contact -->
+    <section class="h-70vh body-font" id="Contact">
+      <div class="md:px-5 px-10 py-20 md:mx-10 h-full flex flex-wrap items-center">
+        <div class="lg:w-3/5 md:w-1/2 md:pr-16 lg:pr-0 pr-0" data-aos="fade-up" data-aos-duration="1000">
+          <h1 class="title-font font-medium text-3xl">
+            Alfaiz ahmad's Form
+          </h1>
+          <p class="leading-relaxed mt-4">
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eaque aperiam excepturi quo impedit soluta
+            expedita similique harum velit eius animi!
+          </p>
+        </div>
+        <div class="lg:w-2/6 md:w-1/2 rounded-lg md:p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0"
+          data-aos="fade-up" data-aos-duration="1000">
+          <h2 class="text-lg font-medium title-font mb-5">
+            Sign Up
+          </h2>
+          <div class="relative mb-4">
+            <label for="full-name" class="leading-7 text-sm ">Full Name</label>
+            <input type="text" id="full-name" name="full-name"
+              class="w-full bg-white rounded border text-black border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+          </div>
+          <div class="relative mb-4">
+            <label for="email" class="leading-7 text-sm ">Email</label>
+            <input type="email" id="email" name="email"
+              class="w-full bg-white rounded border text-black border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+          </div>
+          <div class="relative mb-4">
+            <label for="full-name" class="leading-7 text-sm">Message</label>
+            <textarea name="Message"
+              class="w-full bg-white rounded borde text-black border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">Type Message</textarea>
+          </div>
+          <button class=" w-1/2 border border-gray-400 py-2 px-8 focus:outline-none hover:bg-gray-500 rounded text-lg">
+            Submit ->
+          </button>
+          <p class="text-xs text-gray-500 mt-3">
+            Literally you probably haven't heard of them jean shorts.
+          </p>
+        </div>
+      </div>
+    </section>
+    <hr class="bg-slate-600 pt-0.5 mx-4 mb-4">
+    <footer class="w-full">
+      <div class="w-full flex item-center justify-center">
+        <div class="" data-aos="fade-up" data-aos-duration="1000">
+          <div class="py-10 text-center">
+            <p class="text-5xl py-2">Alfaiz</p>
+            <p class="text-xl">Frontent Developer</p>
+          </div>
+          <ul class="w-full justify-center flex items-center text-center gap-12 text-xl">
+            <li class="hover:text-gray-400">Home</li>
+            <li class="hover:text-gray-400">Skills</li>
+            <li class="hover:text-gray-400">Projects</li>
+          </ul>
+          <div class="w-full flex items-center justify-center py-8 mt-2 gap-4 text-2xl">
+            <i class="fa-regular fa-image hover:text-slate-500"></i>
+            <i class="fa-brands fa-linkedin fa-bounce hover:text-slate-500"></i>
+            <i class="fa-solid fa-globe hover:text-slate-500"></i>
+          </div>
+          <p class="py-4">@CopyRight Alfaiz Ahmad All right reserved</p>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
+
+  <script>
+    document.getElementById('toggleImage').addEventListener('click', function () {
+      const div = document.querySelector('.toggle-div');
+      if (div.style.display === 'none' || div.style.display === '') {
+        div.style.display = 'block';
+      } else {
+        div.style.display = 'none';
+      }
+    });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+  <!-- Initialize Swiper -->
+  <script>
+    var swiper = new Swiper(".mySwiper", {
+      slidesPerView: 2,
+      spaceBetween: 10,
+      loop: true,
+      cssMode: true,
+      breakpoints: {
+        300: {
+          slidesPerView: 1,
+          spaceBetween: 10,
+        },
+        768: {
+          slidesPerView: 2,
+          spaceBetween: 20,
+        },
+        1024: {
+          slidesPerView: 2,
+          spaceBetween: 20,
+        },
+      },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+    });
+  </script>
+  <script>
+    function toggleDarkLight() {
+      document.body.classList.toggle('dark');
+      document.body.classList.toggle('light');
+    }
+  </script>
+  <!-- <script>
+    var swiper = new Swiper(".mySwiper1", {
+      slidesPerView: 2,
+      spaceBetween: 10,
+      loop: true,
+      cssMode: true,
+      breakpoints: {
+        300: {
+          slidesPerView: 1,
+          spaceBetween: 10,
+        },
+        768: {
+          slidesPerView: 2,
+          spaceBetween: 20,
+        },
+        1024: {
+          slidesPerView: 2,
+          spaceBetween: 20,
+        },
+      },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+      pagination: {
+        el: ".swiper-pagination",
+      },
+
+      keyboard: true,
+    });
+  </script> -->
+</body>
+
+</html>
